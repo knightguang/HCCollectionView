@@ -16,7 +16,7 @@
 		62EAF2A71D69457800AA2F71 /* HCCollectionViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EAF2A61D69457800AA2F71 /* HCCollectionViewTests.m */; };
 		62EAF2B21D69457800AA2F71 /* HCCollectionViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EAF2B11D69457800AA2F71 /* HCCollectionViewUITests.m */; };
 		62EAF2C21D6946D400AA2F71 /* HCCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 62EAF2C11D6946D400AA2F71 /* HCCollectionViewLayout.m */; };
-		62EAF2C41D69788A00AA2F71 /* Snip20160821_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 62EAF2C31D69788A00AA2F71 /* Snip20160821_1.png */; };
+		62EAF2C41D69788A00AA2F71 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 62EAF2C31D69788A00AA2F71 /* 1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,7 @@
 		62EAF2B31D69457800AA2F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62EAF2C01D6946D400AA2F71 /* HCCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCollectionViewLayout.h; sourceTree = "<group>"; };
 		62EAF2C11D6946D400AA2F71 /* HCCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCollectionViewLayout.m; sourceTree = "<group>"; };
-		62EAF2C31D69788A00AA2F71 /* Snip20160821_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snip20160821_1.png; sourceTree = "<group>"; };
+		62EAF2C31D69788A00AA2F71 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 		62EAF28B1D69457800AA2F71 /* HCCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				62EAF2C31D69788A00AA2F71 /* Snip20160821_1.png */,
+				62EAF2C31D69788A00AA2F71 /* 1.png */,
 				62EAF28F1D69457800AA2F71 /* AppDelegate.h */,
 				62EAF2901D69457800AA2F71 /* AppDelegate.m */,
 				62EAF2921D69457800AA2F71 /* ViewController.h */,
@@ -262,7 +262,7 @@
 				62EAF29C1D69457800AA2F71 /* LaunchScreen.storyboard in Resources */,
 				62EAF2991D69457800AA2F71 /* Assets.xcassets in Resources */,
 				62EAF2971D69457800AA2F71 /* Main.storyboard in Resources */,
-				62EAF2C41D69788A00AA2F71 /* Snip20160821_1.png in Resources */,
+				62EAF2C41D69788A00AA2F71 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +514,7 @@
 				62EAF2B81D69457800AA2F71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62EAF2B91D69457800AA2F71 /* Build configuration list for PBXNativeTarget "HCCollectionViewTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +523,7 @@
 				62EAF2BB1D69457800AA2F71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62EAF2BC1D69457800AA2F71 /* Build configuration list for PBXNativeTarget "HCCollectionViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +532,7 @@
 				62EAF2BE1D69457800AA2F71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
