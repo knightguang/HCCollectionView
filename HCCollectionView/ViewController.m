@@ -10,7 +10,8 @@
 #import "HCCollectionViewLayout.h"
 
 static NSString *cellID = @"collectionCellID";
-@interface ViewController ()<UICollectionViewDataSource>
+
+@interface ViewController ()<UICollectionViewDataSource, HCLayoutDelegate>
 
 @end
 
@@ -23,6 +24,9 @@ static NSString *cellID = @"collectionCellID";
     self.view.backgroundColor = [UIColor whiteColor];
     
     HCCollectionViewLayout *layout = [[HCCollectionViewLayout alloc] init];
+    // 签订协议
+    layout.layoutDelegate = self;
+    
     
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     
@@ -47,6 +51,10 @@ static NSString *cellID = @"collectionCellID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    /**
+     *  cell的样式自定义
+     */
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
     cell.contentView.backgroundColor = [UIColor orangeColor];
@@ -64,6 +72,41 @@ static NSString *cellID = @"collectionCellID";
     [label sizeToFit];
     
     return cell;
+}
+
+#pragma mark - HCLayoutDelegate - cell 的 frame
+- (CGFloat)hcLayout:(HCCollectionViewLayout *)layout heightForItemAtIndex:(NSUInteger)index withItemWidth:(CGFloat)itemWidth
+{
+    return arc4random_uniform(200);
+}
+
+/**
+ *  设置列数，默认3
+ */
+- (NSInteger)hcLayoutColumnCount:(HCCollectionViewLayout *)layout
+{
+    return 4;
+}
+/**
+ *  设置列间距，默认10
+ */
+- (CGFloat)hcLayoutColumnSpacing:(HCCollectionViewLayout *)layout
+{
+    return 15;
+}
+/**
+ *  设置行间距，默认10
+ */
+- (CGFloat)hcLayoutRowSpacing:(HCCollectionViewLayout *)layout
+{
+    return 15;
+}
+/**
+ *  设置边距，默认{10,10,10,10}
+ */
+- (UIEdgeInsets)hcLayoutEdgeInsets:(HCCollectionViewLayout *)layout
+{
+    return UIEdgeInsetsMake(20, 10, 20, 10);
 }
 
 

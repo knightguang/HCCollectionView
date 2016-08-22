@@ -19,6 +19,11 @@ static UIEdgeInsets const DefaultEdgeInsets = {10, 10, 10, 10};// 记录item边�
 
 @property (nonatomic, strong) NSMutableArray *maxYArray;// 每一列item的长度
 
+- (NSInteger)columnCount;
+- (CGFloat)columnSpacing;
+- (CGFloat)rowSpacing;
+- (UIEdgeInsets)edgeInsets;
+                                                                                                                                       
 @end
 
 /**
@@ -35,8 +40,8 @@ static UIEdgeInsets const DefaultEdgeInsets = {10, 10, 10, 10};// 记录item边�
     [self.attributeArray removeAllObjects];
     [self.maxYArray removeAllObjects];
     // 初始化maxYArray，用于接下来的比较
-    for (NSInteger i = 0; i < DefaultColumnCount; i++) {
-        [self.maxYArray addObject:@(DefaultEdgeInsets.top)];
+    for (NSInteger i = 0; i < [self columnCount]; i++) {
+        [self.maxYArray addObject:@([self edgeInsets].top)];
     }
     
     
@@ -74,17 +79,24 @@ static UIEdgeInsets const DefaultEdgeInsets = {10, 10, 10, 10};// 记录item边�
             minHeightColum = idx;
         }
     }];
-    CGFloat width = (CGRectGetWidth(self.collectionView.frame) - DefaultEdgeInsets.left - DefaultEdgeInsets.right - DefaultColumnSpacing * (DefaultColumnCount - 1)) / DefaultColumnCount;
     
-    CGFloat height = 100 + arc4random_uniform(150);
+    UIEdgeInsets edgInsets = [self edgeInsets];
+    CGFloat columnCount = [self columnCount];
+    CGFloat columnSpacing = [self columnSpacing];
     
-    CGFloat originX = DefaultEdgeInsets.left + (width + DefaultColumnSpacing) * minHeightColum;
+    
+    CGFloat width = (CGRectGetWidth(self.collectionView.frame) - edgInsets.left - edgInsets.right - columnSpacing * (columnCount - 1)) / columnCount;
+    
+    CGFloat height = [self.layoutDelegate hcLayout:self heightForItemAtIndex:indexPath.item withItemWidth:width];
+    
+    CGFloat originX = edgInsets.left + (width + columnSpacing) * minHeightColum;
     CGFloat originY = minHeight;
     // 判断是否为第一行
-    if (originY != DefaultEdgeInsets.top) {
-        originY += DefaultRowSpacing;
+    if (originY != edgInsets.top) {
+        originY += columnSpacing;
     }
     
+    // 设置frame
     [attribute setFrame:CGRectMake(originX, originY, width, height)];
     
     self.maxYArray[minHeightColum] = @(CGRectGetMaxY(attribute.frame));
@@ -105,7 +117,7 @@ static UIEdgeInsets const DefaultEdgeInsets = {10, 10, 10, 10};// 记录item边�
         }
     }];
     
-    return CGSizeMake(0, maxHeight + DefaultEdgeInsets.bottom);
+    return CGSizeMake(0, maxHeight + [self edgeInsets].bottom);
 }
 
 #pragma mark - 懒加载
@@ -123,6 +135,41 @@ static UIEdgeInsets const DefaultEdgeInsets = {10, 10, 10, 10};// 记录item边�
         _maxYArray = [[NSMutableArray alloc] init];
     }
     return _maxYArray;
+}
+
+#pragma mark - layout delegate
+- (NSInteger)columnCount
+{
+    if ([self.layoutDelegate respondsToSelector:@selector(hcLayoutColumnCount:)]) {
+        return [self.layoutDelegate hcLayoutColumnCount:self];
+    }
+    
+    return DefaultColumnCount;
+}
+- (CGFloat)columnSpacing
+{
+    if ([self.layoutDelegate respondsToSelector:@selector(hcLayoutColumnSpacing:)]) {
+        return [self.layoutDelegate hcLayoutColumnSpacing:self];
+    }
+    
+    return DefaultColumnSpacing;
+}
+- (CGFloat)rowSpacing
+{
+    if ([self.layoutDelegate respondsToSelector:@selector(hcLayoutColumnCount:)]) {
+        return [self.layoutDelegate hcLayoutRowSpacing:self];
+    }
+    
+    return DefaultRowSpacing;
+}
+
+- (UIEdgeInsets)edgeInsets
+{
+    if ([self.layoutDelegate respondsToSelector:@selector(hcLayoutColumnCount:)]) {
+        return [self.layoutDelegate hcLayoutEdgeInsets:self];
+    }
+    
+    return DefaultEdgeInsets;
 }
 
 
